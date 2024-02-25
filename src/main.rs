@@ -25,7 +25,7 @@ fn get_conf() -> Conf {
 
 #[macroquad::main(get_conf())]
 async fn main() {
-    let mut engine = Engine::new(IVec2::new(100, 50));
+    let mut engine = Engine::new(IVec2::new(120, 60));
     let mut z = 0f32;
     engine.update_interpolation_values(z);
 
@@ -41,7 +41,7 @@ async fn main() {
         while lag >= TIME_PER_FRAME {
             lag -= TIME_PER_FRAME;
 
-            z += 0.04f32;
+            z += 0.08f32;
             engine.update_interpolation_values(z)
 
         }

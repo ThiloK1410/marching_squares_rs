@@ -1,4 +1,4 @@
-use macroquad::color::WHITE;
+use macroquad::color::{WHITE, YELLOW};
 use macroquad::math::{IVec2, Vec2};
 use macroquad::shapes::{draw_circle, draw_line};
 use macroquad::window::{screen_height, screen_width};
@@ -95,6 +95,7 @@ impl Engine {
     }
     pub fn draw_marching_squares(&self) {
         let thickness = 1f32;
+        let color = YELLOW;
         for y in 0..self.grid_size.y as usize {
             for x in 0..self.grid_size.x as usize {
                 let points = vec!(
@@ -111,7 +112,7 @@ impl Engine {
                 match point_vec.len() {
                     2 => {
                         draw_line(point_vec[0].0, point_vec[0].1, point_vec[1].0, point_vec[1].1,
-                                  thickness, WHITE)
+                                  thickness, color)
                     }
                     4 => {
                         let mid_value = self.noise_generator.eval_3d(
@@ -123,14 +124,14 @@ impl Engine {
                             self.z_value as f64 * self.scale);
                         if mid_value < 0f64 {
                             draw_line(point_vec[0].0, point_vec[0].1, point_vec[3].0, point_vec[3].1,
-                                      thickness, WHITE);
+                                      thickness, color);
                             draw_line(point_vec[1].0, point_vec[1].1, point_vec[2].0, point_vec[2].1,
-                                      thickness, WHITE)
+                                      thickness, color)
                         } else {
                             draw_line(point_vec[0].0, point_vec[0].1, point_vec[1].0, point_vec[1].1,
-                                      thickness, WHITE);
+                                      thickness, color);
                             draw_line(point_vec[3].0, point_vec[3].1, point_vec[2].0, point_vec[2].1,
-                                      thickness, WHITE)
+                                      thickness, color)
                         }
                     }
                     _ => ()
